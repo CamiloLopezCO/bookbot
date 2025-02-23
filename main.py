@@ -1,18 +1,15 @@
+from stats import get_num_words #Import word-counting function 
+
 def get_book_text(filepath):
     """Reads a file and returns its contents as a string."""
     with open(filepath, "r", encoding="utf-8") as f:  # Open the file with UTF-8 encoding
         return f.read()  # Read and return the entire file contents
 
-def count_words(text):
-    """Counts the number of words in the given text."""
-    words = text.split()  # Split text into a list of words using whitespace
-    return len(words)  # Return the total number of words
-
 def main():
     """Reads the book text, counts words, and prints the result."""
     filepath = "books/frankenstein.txt"  # Define the file path
     book_text = get_book_text(filepath)  # Read the book contents
-    word_count = count_words(book_text)  # Count words in the text
+    word_count = get_num_words(book_text)  # Count words in the text
 
     # Print the total word count in the book
     print(f"{word_count} words found in the document")
