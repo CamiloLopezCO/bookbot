@@ -13,3 +13,7 @@ def get_char_count(text):
         else:
             char_counts[char] = 1 #Initialize count if character is new
     return char_counts #Return dictionary of character frequencies 
+def sort_character_counts(char_counts):
+    """Sorts the dictionary of character counts in descending order, keeping only alphabetical characters."""
+    sorted_counts = sorted([{char: count} for char, count in char_counts.items() if char.isalpha()], key=lambda x: list(x.values())[0],reverse=True)
+    return sorted_counts

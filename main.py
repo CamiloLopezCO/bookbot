@@ -1,8 +1,10 @@
-from stats import get_num_words, get_char_count #Import both function 
+from stats import get_num_words, get_char_count, sort_character_counts 
+#Import functions from stats 
 
 def get_book_text(filepath):
     """Reads a file and returns its contents as a string."""
-    with open(filepath, "r", encoding="utf-8") as f:  #Open the file with UTF-8 encoding
+    with open(filepath, "r", encoding="utf-8") as f:  
+        #Open the file with UTF-8 encoding
         return f.read()  #Read and return the entire file contents
 
 def main():
@@ -11,11 +13,21 @@ def main():
     book_text = get_book_text(filepath)  #Read the book contents
     word_count = get_num_words(book_text)  #Count words in the text
     char_count = get_char_count(book_text) #Count character occurrences
+    sorted_chars = sort_character_counts(char_count) #Sort character counts
 
-    #Print the total word count in the book
-    print(f"{word_count} words found in the document")
-    print("\nCharacter Frequency Count:")
-    print(char_count) #Print the dictionary of character frequencies
+# Print the formatted report
+    print("\n============ BOOKBOT ============")
+    print(f"Analyzing book found at {filepath}...")
+    print("----------- Word Count ----------")
+    print(f"Found {word_count} total words")
+    print("--------- Character Count -------")
+
+    for char_dict in sorted_chars:
+        for char, count in char_dict.items():
+            print(f"{char}: {count}")
+
+    print("============= END ===============\n")
+
 
 #Ensure the script runs only if executed directly (not imported as a module)
 if __name__ == "__main__":
